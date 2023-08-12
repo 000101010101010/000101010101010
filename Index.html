@@ -1,0 +1,48 @@
+este code me da error al enviar una palabra, le puse en un editor de código que los ejecuta de llama spck en Android
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enviar información a una URL de webhook</title>
+</head>
+<body>
+  <h1>Enviar información a una URL de webhook</h1>
+
+  <input type="text" id="textoPersonalizado" placeholder="Ingrese un texto personalizado">
+  <button onclick="enviarInfo()">Enviar</button>
+
+  <script>
+    function enviarInfo() {
+      var texto = document.getElementById("textoPersonalizado").value;
+      var webhookURL = "https://discord.com/api/webhooks/1139363505506623529/dVfi58p51U2Z5ESsvhKOAKay4FKPLOqs-GuICKkVrL3fpNyDyQT1B1_mEW0bFNdt-38b"; // Reemplaza con la URL de tu webhook
+
+      // Objeto de datos para enviar al webhook
+      var data = {
+        textoPersonalizado: texto
+      };
+
+      // Configuración de la solicitud
+      var requestConfig = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      };
+
+      // Envío de la solicitud al webhook
+      fetch(webhookURL, requestConfig)
+        .then(function(response) {
+          if (response.ok) {
+            alert("Información enviada con éxito");
+          } else {
+            alert("Error al enviar la información");
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          alert("Error al enviar la información");
+        });
+    }
+  </script>
+</body>
+</html>
